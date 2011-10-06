@@ -52,6 +52,7 @@ This package installs the standalone server for Sauerbraten.
 Summary:	Game content for the Sauerbraten game
 Group:		Amusements/Games
 Requires:	%{name} = %{version}
+BuildArch:      noarch
 
 
 %description data
