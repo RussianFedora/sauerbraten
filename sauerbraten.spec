@@ -1,7 +1,7 @@
 Summary:	3D first-person game engine
 Name:		sauerbraten
 Version:	0.0
-Release:	0.4.20100728%{?dist}
+Release:	0.4.20100728%{?dist}.R
 
 License:	zlib
 Group:		Amusements/Games
@@ -9,7 +9,6 @@ URL:		http://www.sauerbraten.org/
 Source:		http://downloads.sourceforge.net/project/sauerbraten/sauerbraten/2010_07_19/%{name}_2010_07_28_justice_edition_linux.tar.bz2
 Source1:	sauerbraten.desktop
 Source2:	sauerbraten.png
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	SDL_image-devel
 BuildRequires:	SDL_mixer-devel
@@ -137,6 +136,9 @@ rm -fr %{buildroot}
 
 
 %changelog
+* Thu Oct 21 2011 Vasiliy N. Glazov <vascom2@gmail.com> - 0.0-0.4.20100728.R
+- clean spec, added R to release
+
 * Mon Mar 21 2011 Arkady L. Shane <ashejn@yandex-team.ru> - 0.0-0.4.20100728
 - fix source url
 
