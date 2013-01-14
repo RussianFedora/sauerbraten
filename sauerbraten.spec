@@ -1,12 +1,11 @@
 Summary:	3D first-person game engine
 Name:		sauerbraten
 Version:	0.0
-Release:	0.4.20100728%{?dist}.R
+Release:	0.5.20130107%{?dist}
 
 License:	zlib
-Group:		Amusements/Games
 URL:		http://www.sauerbraten.org/
-Source:		http://downloads.sourceforge.net/project/sauerbraten/sauerbraten/2010_07_19/%{name}_2010_07_28_justice_edition_linux.tar.bz2
+Source:		http://downloads.sourceforge.net/project/sauerbraten/sauerbraten/2013_01_04/%{name}_2013_01_07_collect_edition_linux.tar.bz2
 Source1:	sauerbraten.desktop
 Source2:	sauerbraten.png
 
@@ -15,7 +14,7 @@ BuildRequires:	SDL_mixer-devel
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	zlib-devel
 
-Requires:	sauerbraten-data = %{version}
+Requires:	sauerbraten-data = %{version}-%{release}
 
 
 %description
@@ -33,8 +32,7 @@ This package installs the game client and map editor.
 
 %package server
 Summary:	Standalone server for the Sauerbraten game
-Group:		Amusements/Games
-Requires:	%{name} = %{version}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 
 %description server
@@ -50,9 +48,8 @@ This package installs the standalone server for Sauerbraten.
 
 %package data
 Summary:	Game content for the Sauerbraten game
-Group:		Amusements/Games
-Requires:	%{name} = %{version}
-BuildArch:      noarch
+Requires:	%{name} = %{version}-%{release}
+BuildArch:	noarch
 
 
 %description data
@@ -70,12 +67,10 @@ This package installs maps, textures, sounds, etc. of Sauerbraten.
 
 %build
 cd src
-# DSO linking
-sed -i 's!-lGL!-lGL -lX11!' Makefile
-make
+sed -i "s|-O3 -fomit-frame-pointer|%{optflags}|g" Makefile
+make %{?_smp_mflags}
 
 %install
-rm -fr %{buildroot}
 mkdir -p bin
 mv src/sauer_client bin/client
 mv src/sauer_server bin/server
@@ -108,12 +103,7 @@ mv data/ %{buildroot}%{_datadir}/sauerbraten/
 mv packages %{buildroot}%{_datadir}/sauerbraten/
 
 
-%clean
-rm -fr %{buildroot}
-
-
 %files
-%defattr(-,root,root)
 %{_bindir}/%{name}
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/bin
@@ -123,7 +113,6 @@ rm -fr %{buildroot}
 
 
 %files server
-%defattr(-,root,root)
 %doc server-init.cfg
 %{_bindir}/%{name}-server
 %dir %{_libdir}/%{name}/bin
@@ -131,12 +120,14 @@ rm -fr %{buildroot}
 
 
 %files data
-%defattr(-,root,root)
 %dir %{_datadir}/sauerbraten/
 %{_datadir}/sauerbraten/*
 
 
 %changelog
+* Mon Jan 14 2012 Arkady L. Shane <ashejn@russianfedora.ru> - 0.0-0.5.20130107.R
+- update to 20130107 snapshot (rfr#322)
+
 * Thu Oct 21 2011 Vasiliy N. Glazov <vascom2@gmail.com> - 0.0-0.4.20100728.R
 - clean spec, added R to release
 
