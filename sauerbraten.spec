@@ -1,11 +1,11 @@
 Summary:	3D first-person game engine
 Name:		sauerbraten
 Version:	0.0
-Release:	0.5.20130107%{?dist}
+Release:	0.6.20130203%{?dist}
 
 License:	zlib
 URL:		http://www.sauerbraten.org/
-Source:		http://downloads.sourceforge.net/project/sauerbraten/sauerbraten/2013_01_04/%{name}_2013_01_07_collect_edition_linux.tar.bz2
+Source:		http://downloads.sourceforge.net/project/sauerbraten/sauerbraten/2013_01_04/%{name}_2013_02_03_collect_edition_linux.tar.bz2
 Source1:	sauerbraten.desktop
 Source2:	sauerbraten.png
 
@@ -125,6 +125,9 @@ mv packages %{buildroot}%{_datadir}/sauerbraten/
 
 
 %changelog
+* Tue Mar  4 2012 Arkady L. Shane <ashejn@russianfedora.ru> - 0.0-0.6.20130203.R
+- update to 20130203
+
 * Mon Jan 14 2012 Arkady L. Shane <ashejn@russianfedora.ru> - 0.0-0.5.20130107.R
 - update to 20130107 snapshot (rfr#322)
 
